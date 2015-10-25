@@ -1,0 +1,100 @@
+<!-- Doctype declaration messes with the fullscreen :( So It's not here -->
+<html>
+	<head>
+		<title>3 Renderer</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.js"></script>
+		<script src="rsc/scripts/ColladaLoader.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<!--
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		-->
+		<script src="rsc/scripts/lights.js"></script>
+		<script src="rsc/scripts/transforms.js"></script>
+		<script src="rsc/scripts/app.js"></script>
+		<link rel="stylesheet" href="rsc/style/theme.css"/>
+	</head>
+	<body>
+		<div id="controlPanel">
+			<div class="control">
+				<span class="controlName">
+					Color
+				</span>
+				<div id="rgb">
+					<span class="slider" id="Red"></span>
+					<span class="slider" id="Green"></span>
+					<span class="slider" id="Blue"></span>
+				</div>
+			</div>
+			<div class="control">
+				<span class="controlName">
+					Height
+				</span>
+				<span class="slider" id="Height"></span>
+			</div>
+			<div class="control">
+				<span class="controlName">
+					Lighting
+				</span>
+				<span id="radio">
+					<input class="radioButton" type="radio" id="Bright" name="light" onclick="changeLighting(ambientLight,false);" checked="checked">Bright</input>
+					<input class="radioButton" type="radio" id="Dark" name="light" onclick="changeLighting(ambientLight,true);">Dark</input>
+				</span>
+			</div>
+			<div class="control">
+				<span class="controlName">
+					Rotate
+				</span>
+				<span class="slider" id="Rotate"></span>
+			</div>
+		</div>
+		<script>
+			$(function(){
+				initSliders();
+			});
+		</script>
+		<script>
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera(75,window.innerWidth / window.innerHeight,0.1,1000); //75 = FOV, Aspect Ratio, Near Clipping, Far Clipping
+			
+			var renderer = new THREE.WebGLRenderer(); //Our renderer
+			renderer.setSize(window.innerWidth,window.innerHeight); //Set the renderer size to the screen size, or however big you want it
+			document.body.appendChild(renderer.domElement); //Attach the Renderer to the window
+			
+			//var geometry = new THREE.BoxGeometry(1,1,1); //Define geometry
+			//var material = new THREE.MeshLambertMaterial({color:0xffffff}); //Define material
+			//var cube = new THREE.Mesh(geometry,material); //Create the mesh with the specified geometry and material
+			
+			var cube = new THREE.Object3D();
+			var loader = new THREE.JSONLoader();
+			loader.load('Mug.json',loadCallback);
+			
+			//scene.add(cube); //Add cube to the scene
+			rotate(cube,0.5,0,0);
+			
+			var ambientLight = createAmbientLight(scene,0xaaaaaa);
+			
+			
+			var pointLight;
+			pointLight = new THREE.PointLight(0xaeaeae,1,30);
+			pointLight.position.set(10,10,10);
+			scene.add(pointLight);
+			
+			
+			camera.position.z = 5; //Set camera z position so we aren't inside the cube
+			//Our Render Loop
+			function render(){
+				requestAnimationFrame(render); //Get the animation frame from our renderer
+				renderer.render(scene,camera); //Render our scene
+			};
+			render();
+			
+			$(window).resize(function(){
+				canvasResize(camera,renderer);
+			});
+		</script>
+		
+	</body>
+</html>

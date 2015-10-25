@@ -1,0 +1,89 @@
+body
+{
+	margin:0;
+}
+
+canvas
+{
+	position:absolute;
+	
+	width:100%;
+	height:100%;
+	z-index:-1;
+}
+
+#controlPanel
+{
+	position:absolute;
+	
+	bottom:0;
+	left:0;
+	right:0;
+	
+	height:20%;
+	width:96%;
+	
+	background:rgba(255,255,255,0.0);
+	display:block;
+	border-top:2px solid rgba(255,255,255,0.2);
+	z-index:1;
+	
+	padding-left:2vw;
+	padding-right:2vw;
+	padding-top:5vh;
+	
+	color:rgba(255,255,255,1.0);
+}
+
+#controlPanel > .control
+{
+	position:relative;
+	display:inline-block;
+	
+	margin-left:5%;
+	margin-right:5%;
+	
+	width:10%;
+	float:left;
+}
+
+.control > .controlName
+{
+	display:block;
+	margin-bottom:5%;
+}
+
+.slider
+{
+	display:inline-block;
+	width:100%;
+	
+	background:rgba(255,255,255,0.0);
+	border:1px solid rgba(255,255,255,1.0);
+	color:rgba(255,255,0,1);
+}
+
+#Red,#Green,#Blue
+{
+	margin-top:5%;
+}
+
+#Red
+{
+	background:rgba(255,64,64,1.0);
+}
+
+#Green
+{
+	background:rgba(64,255,64,1.0);
+}
+
+#Blue
+{
+	background:rgba(64,64,255,1.0);
+}
+
+span.ui-slider-handle.ui-state-default.ui-corner-all
+{
+	background:rgba(255,255,255,1.0);
+}
