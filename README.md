@@ -3,7 +3,7 @@
 ####Currently Under Maintenance.
 A quick and simple Three.js previewer that imports amodel of a mug created in Blender 3d, and exported to JSON format. 
 ## Use
-To use just download the files and open index.html
+To use just download the files and open index.html in FireFox.
 ## License
 ####MIT License
 Copyright (c) 2016 Joseph Juma
