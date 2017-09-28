@@ -1,7 +1,7 @@
 # Example Three.js Model Viewer
 
 ## About
-This is a simple Three.js ( link ) model viewer for learning and reference purposes.
+This is a simple Three.js ( https://threejs.org/ ) model viewer for learning and reference purposes.
 
 ## Use
 To use, download the project and open 'index.html' in the Firefox web browser.
